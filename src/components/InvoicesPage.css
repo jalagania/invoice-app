@@ -5,6 +5,10 @@
   margin-top: 0.8rem;
 }
 
+.filter-category-text {
+  text-transform: lowercase;
+}
+
 .filter-box {
   width: 100%;
 
@@ -102,6 +106,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.no-invoices-container {
+  height: 53rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-invoice-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--gray);
+  margin-top: 2.4rem;
+}
+
+.no-invoices-container img {
+  margin-bottom: 6.5rem;
+}
+
+.no-invoices-container span {
+  font-weight: 700;
 }
 
 .violet-bg {
