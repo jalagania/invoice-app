@@ -1,0 +1,9 @@
+.page-container {
+  margin-left: 10rem;
+}
+
+.invoice-container {
+  max-width: 73rem;
+  margin: 0 auto;
+  padding-top: 7rem;
+}

@@ -1,5 +1,16 @@
 # Frontend Mentor - Invoice app solution
 
+### Links
+
+- Live Site URL:
+
+### Built with
+
+- HTML5
+- CSS (Flexbox, CSS Grid, CSS custom properties)
+- React/Redux Toolkit
+- JSON
+
 Your users should be able to:
 
 - View the optimal layout for the app depending on their device's screen size
@@ -10,8 +21,6 @@ Your users should be able to:
 - Filter invoices by status (draft/pending/paid)
 - Toggle light and dark mode
 - **Bonus**: Keep track of any changes, even after refreshing the browser (`localStorage` could be used for this if you're not building out a full-stack app)
-
-Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
 
 ### Expected Behaviour
 

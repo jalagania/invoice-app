@@ -1,0 +1,113 @@
+.invoice-amount-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--gray);
+  margin-top: 0.8rem;
+}
+
+.filter-box {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.filter-menu {
+  margin-left: auto;
+  position: relative;
+}
+
+.filter-menu p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--input-text);
+}
+
+.btn-filter-head {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.arrow-icon {
+  transition: all 0.2s;
+}
+
+.filter-body {
+  width: 19rem;
+  padding: 2.4rem;
+  background-color: var(--filter-menu);
+  border-radius: 0.8rem;
+  box-shadow: 0 1rem 2rem var(--shadow);
+  position: absolute;
+  top: 2.3rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.btn-filter {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+}
+
+.btn-filter:hover .check-box {
+  border: 1px solid var(--violet);
+}
+
+.check-box {
+  width: 1.6rem;
+  height: 1.6rem;
+  background-color: var(--checkbox);
+  border-radius: 2px;
+  transition: all 0.2s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-add-invoice {
+  padding: 0.8rem 1.5rem 0.8rem 0.8rem;
+  background-color: var(--violet);
+  transition: background 0.2s;
+  border-radius: 2.4rem;
+
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.btn-add-invoice:hover {
+  background-color: var(--violet-light);
+}
+
+.btn-add-invoice p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.plus-icon-wrapper {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background-color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.violet-bg {
+  background-color: var(--violet);
+}
+
+.hidden {
+  display: none;
+}
