@@ -1,14 +1,17 @@
 import "./InvoicesPage.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import arrow from "../assets/icon-arrow-down.svg";
 import plus from "../assets/icon-plus.svg";
 import check from "../assets/icon-check.svg";
 import noInvoice from "../assets/illustration-empty.svg";
+import Invoice from "./Invoice";
 
 function InvoicesPage() {
+  const { appData } = useSelector((store) => store.data);
   const [showFilter, setShowFilter] = useState(false);
   const [filterCategory, setFilterCategory] = useState("total");
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState(appData);
 
   const invoiceAmountText =
     document.body.clientWidth > 425
@@ -16,6 +19,12 @@ function InvoicesPage() {
           filteredData.length + " " + filterCategory.toLowerCase()
         } invoices`
       : `${filteredData.length} invoices`;
+
+  const filterHeadText =
+    document.body.clientWidth > 425 ? "Filter by status" : "Filter";
+
+  const invoiceButtonText =
+    document.body.clientWidth > 425 ? "New Invoice" : "New";
 
   function handleFilterCategory(event) {
     if (
@@ -29,6 +38,38 @@ function InvoicesPage() {
       );
     }
   }
+
+  useEffect(() => {
+    if (filterCategory === "total") {
+      setFilteredData(appData);
+    }
+    if (filterCategory === "Draft") {
+      setFilteredData(appData.filter((invoice) => invoice.status === "draft"));
+    }
+    if (filterCategory === "Pending") {
+      setFilteredData(
+        appData.filter((invoice) => invoice.status === "pending")
+      );
+    }
+    if (filterCategory === "Paid") {
+      setFilteredData(appData.filter((invoice) => invoice.status === "paid"));
+    }
+  }, [filterCategory]);
+
+  useEffect(() => {
+    function closeFilterMenu(event) {
+      if (
+        !event.target.closest(".btn-filter-head") &&
+        !event.target.closest(".filter-body")
+      ) {
+        setShowFilter(false);
+      }
+    }
+
+    document.addEventListener("click", closeFilterMenu);
+
+    return () => document.removeEventListener("click", closeFilterMenu);
+  }, []);
 
   return (
     <div className="invoice-page-container">
@@ -44,7 +85,7 @@ function InvoicesPage() {
             className="btn-filter-head"
             onClick={() => setShowFilter(!showFilter)}
           >
-            <p className="filter-head-text">Filter by status</p>
+            <p className="filter-head-text">{filterHeadText}</p>
             <img
               src={arrow}
               alt="down arrow"
@@ -115,16 +156,22 @@ function InvoicesPage() {
           <div className="plus-icon-wrapper">
             <img src={plus} alt="plus icon" className="plus-icon" />
           </div>
-          <p>New Invoice</p>
+          <p>{invoiceButtonText}</p>
         </button>
       </div>
-      {filteredData.length > 0 && <div className="invoices-container"></div>}
+      {filteredData.length > 0 && (
+        <div className="invoices-container">
+          {filteredData.map((invoice) => {
+            return <Invoice key={invoice.id} invoice={invoice} />;
+          })}
+        </div>
+      )}
       {filteredData.length === 0 && (
         <div className="no-invoices-container">
           <img src={noInvoice} alt="no invoices container" />
           <h2>There is nothing here</h2>
           <p className="no-invoice-text">
-            Create an invoice by clicking the
+            Create an invoice by clicking the <br />
             <span> New Invoice </span>
             button and get started
           </p>

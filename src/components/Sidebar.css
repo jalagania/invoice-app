@@ -48,13 +48,15 @@
   transition: all 0.2s;
 }
 
-.theme-icon:hover {
-  filter: brightness(1.5);
-}
-
 .avatar {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
   margin: 2.4rem 0;
+}
+
+@media (hover: hover) {
+  .theme-icon:hover {
+    filter: brightness(1.5);
+  }
 }

@@ -1,0 +1,76 @@
+.invoice-box {
+  padding: 1.6rem 2.4rem 1.6rem 3.2rem;
+  background-color: var(--invoice-box);
+  border-radius: 0.8rem;
+  box-shadow: 0 1rem 1rem -1rem var(--shadow);
+  cursor: pointer;
+
+  display: grid;
+  grid-template-columns: 0.7fr 1fr 1fr 0.6fr 1fr 0.05fr;
+  align-items: center;
+}
+
+.invoice-id {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--input-text);
+}
+
+.invoice-id span {
+  color: #7e88c3;
+}
+
+.payment-due {
+  font-size: 1.6rem;
+  color: var(--gray);
+}
+
+.client-name {
+  font-size: 1.6rem;
+  color: var(--invoice-client);
+}
+
+.total {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--input-text);
+  text-align: right;
+}
+
+.status {
+  width: 11rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 1.2rem 1.8rem;
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: 0.6rem;
+
+  justify-self: center;
+}
+
+.status span {
+  font-size: 2.5rem;
+  vertical-align: middle;
+  line-height: 0;
+  margin-right: 0.5rem;
+}
+
+.status.draft {
+  color: var(--draft);
+  background-color: var(--draft-bg);
+}
+
+.status.pending {
+  color: #ff8f00;
+  background-color: rgba(255, 145, 0, 0.06);
+}
+
+.status.paid {
+  color: #33d69f;
+  background-color: rgba(51, 214, 160, 0.06);
+}
+
+.arrow {
+  justify-self: end;
+}

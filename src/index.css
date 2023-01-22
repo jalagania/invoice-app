@@ -9,6 +9,8 @@
   --blue-light: #7e88c3;
   --filter-menu: #ffffff;
   --checkbox: #dfe3fa;
+  --invoice-box: #ffffff;
+  --invoice-client: #858bb2;
   --black: #0c0e16;
   --red: #ec5757;
   --red-light: #ff9797;
@@ -19,6 +21,8 @@
   --input-text: #0c0e16;
   --input-title: #7e88c3;
   --shadow: #48549f40;
+  --draft: #373b53;
+  --draft-bg: #373b530f;
 }
 
 .dark-mode {
@@ -27,10 +31,14 @@
   --black: #1e2139;
   --filter-menu: #252945;
   --checkbox: #1e2139;
+  --invoice-box: #1e2139;
   --button-round: #252945;
+  --invoice-client: #ffffff;
   --button-round-hover: #ffffff;
   --input-text: #ffffff;
   --input-title: #dfe3fa;
+  --draft: #dfe3fa;
+  --draft-bg: rgba(223, 227, 250, 0.06);
   --shadow: #00000040;
 }
 
@@ -59,7 +67,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: var(--input-text);
 }
