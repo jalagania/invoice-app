@@ -6,7 +6,13 @@ const dataSlice = createSlice({
   initialState: {
     appData: data,
   },
-  reducers: {},
+  reducers: {
+    deleteInvoice: (state, action) => {
+      state.appData = state.appData.filter(
+        (invoice) => invoice.id !== action.payload
+      );
+    },
+  },
 });
 
 export default dataSlice;

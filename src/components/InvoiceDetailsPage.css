@@ -1,0 +1,233 @@
+.btn-go-back {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--input-text);
+  transition: all 0.2s;
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.invoice-status-box {
+  margin-top: 3.2rem;
+  padding: 2rem 3.2rem;
+  background-color: var(--invoice-box);
+  border-radius: 0.8rem;
+  box-shadow: 0 1rem 1rem -1rem var(--shadow);
+
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.status-text {
+  font-size: 1.5rem;
+  color: var(--input-title);
+}
+
+.invoice-status-box .btn {
+  padding: 1.6rem 2.4rem;
+  border-radius: 2.4rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.invoice-details-buttons {
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.btn-edit {
+  color: var(--input-title);
+  background-color: var(--button-round);
+  transition: background 0.2s;
+}
+
+.btn-delete {
+  color: white;
+  background-color: var(--red);
+  transition: background 0.2s;
+}
+
+.btn-mark-paid {
+  color: white;
+  background-color: var(--violet);
+  transition: background 0.2s;
+}
+
+.invoice-details-box {
+  padding: 4.8rem;
+  margin-top: 2.4rem;
+  background-color: var(--invoice-box);
+  border-radius: 0.8rem;
+  box-shadow: 0 1rem 1rem -1rem var(--shadow);
+}
+
+.invoce-details-info {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.invoice-sender-address {
+  text-align: right;
+  grid-area: 1 / 4;
+}
+
+.invoice-sender-address,
+.invoice-client-address p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+  color: var(--input-title);
+}
+
+.invoice-details-id {
+  margin-bottom: 1.2rem;
+}
+
+.invoice-details-id span {
+  color: #888eb0;
+}
+
+.invoice-client-street {
+  margin-top: 1.2rem;
+}
+
+.invoice-description,
+.invoice-date-text,
+.invoice-client-text,
+.invoice-email-text,
+.invoice-due-text {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--input-title);
+  margin-bottom: 1.2rem;
+}
+
+.invoice-details-id,
+.invoice-created,
+.invoice-client-name,
+.invoice-client-email,
+.invoice-payment-due {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--input-text);
+}
+
+.invoice-details-date {
+  grid-area: 2 / 1;
+}
+
+.invoice-details-billTo {
+  grid-area: 2 / 2 / 4;
+}
+
+.invoice-client-sendTo {
+  grid-area: 2 / 3;
+}
+
+.invoice-due-date {
+  margin-top: 3rem;
+  grid-area: 3 / 1;
+  align-self: end;
+}
+
+@media (hover: hover) {
+  .btn-go-back:hover {
+    color: #888eb0;
+  }
+
+  .btn-edit:hover {
+    color: #7e88c3;
+    background-color: var(--button-round-hover);
+  }
+
+  .btn-delete:hover {
+    background-color: var(--red-light);
+  }
+
+  .btn-mark-paid:hover {
+    background-color: var(--violet-light);
+  }
+}
+
+.invoice-price-table {
+  margin-top: 5rem;
+  border-radius: 0.8rem;
+  overflow: hidden;
+}
+
+.price-table-body {
+  width: 100%;
+  background-color: var(--button-round);
+}
+
+table {
+  text-align: right;
+  border-collapse: collapse;
+}
+
+th {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--input-title);
+  padding: 3.2rem 0;
+}
+
+td {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--input-title);
+  padding-bottom: 3.2rem;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+  padding-left: 3.2rem;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  text-align: center;
+}
+
+th:last-child,
+td:last-child {
+  padding-right: 3.2rem;
+}
+
+td:first-child,
+td:last-child {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--input-text);
+}
+
+tbody tr:last-child td {
+  padding-bottom: 4rem;
+}
+
+.price-table-bottom {
+  padding: 2.4rem 3.2rem;
+  color: white;
+  background-color: var(--table-bottom);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.invoice-total-text {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.invoice-details-total {
+  font-size: 2.4rem;
+  font-weight: 700;
+}

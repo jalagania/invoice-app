@@ -23,6 +23,7 @@
   --shadow: #48549f40;
   --draft: #373b53;
   --draft-bg: #373b530f;
+  --table-bottom: #373b53;
 }
 
 .dark-mode {
@@ -40,6 +41,7 @@
   --draft: #dfe3fa;
   --draft-bg: rgba(223, 227, 250, 0.06);
   --shadow: #00000040;
+  --table-bottom: #0c0e16;
 }
 
 *,
@@ -92,6 +94,10 @@ button {
   border: none;
   cursor: pointer;
   background-color: transparent;
+}
+
+.btn {
+  transition: background 0.2s;
 }
 
 .btn:active {
