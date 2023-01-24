@@ -5,6 +5,7 @@ import InvoicesPage from "./components/InvoicesPage";
 import InvoiceDetailsPage from "./components/InvoiceDetailsPage";
 import ModalDelete from "./components/ModalDelete";
 import AddInvoicePage from "./components/AddInvoicePage";
+import { useEffect } from "react";
 
 function App() {
   const { invoicesPageVisible } = useSelector((store) => store.invoicesPage);
@@ -12,9 +13,10 @@ function App() {
     (store) => store.invoiceDetailsPage
   );
   const { modalDeleteVisible } = useSelector((store) => store.modalDelete);
-  const { addInvoicePageVisible } = useSelector(
-    (store) => store.addInvoicePage
-  );
+
+  useEffect(() => {
+    document.body.scrollIntoView();
+  }, [invoicesPageVisible, invoiceDetailsPageVisible]);
 
   return (
     <div>

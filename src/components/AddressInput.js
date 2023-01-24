@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./AddressInput.css";
 
 function AddressInput(props) {
-  const addressObj = {
-    street: "",
-    city: "",
-    postCode: "",
-    country: "",
-  };
+  const { addInvoicePageVisible } = useSelector(
+    (store) => store.addInvoicePage
+  );
+  const [address, setAddress] = useState(props.addressObj);
 
   function handleInputChange(event) {
     setAddress({
@@ -16,7 +15,15 @@ function AddressInput(props) {
     });
   }
 
-  const [address, setAddress] = useState(addressObj);
+  useEffect(() => {
+    props.getAddress(address);
+  }, [address]);
+
+  useEffect(() => {
+    if (!addInvoicePageVisible) {
+      setAddress(props.addressObj);
+    }
+  }, [addInvoicePageVisible]);
 
   return (
     <div className="address-input">

@@ -1,18 +1,119 @@
 import "./AddEditInvoice.css";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddressInput from "./AddressInput";
 import addInvoiceSlice from "../store/addInvoiceSlice";
+import dataSlice from "../store/dataSlice";
 
 function AddEditInvoice(props) {
   const dispatch = useDispatch();
+  const invoicePageRef = useRef();
+  const { appData } = useSelector((store) => store.data);
   const { addInvoicePageVisible } = useSelector(
     (store) => store.addInvoicePage
   );
   const { hideAddInvoicePage } = addInvoiceSlice.actions;
+  const { addInvoice } = dataSlice.actions;
+  const { invoiceID } = useSelector((store) => store.invoiceDetailsPage);
+  const [invoice] = useSelector((store) =>
+    store.data.appData.filter((invoice) => invoice.id === invoiceID)
+  );
+
+  const initialState = {
+    createdAt: "",
+    description: "",
+    paymentTerms: "",
+    clientName: "",
+    clientEmail: "",
+    senderAddress: {
+      street: "",
+      city: "",
+      postCode: "",
+      country: "",
+    },
+    clientAddress: {
+      street: "",
+      city: "",
+      postCode: "",
+      country: "",
+    },
+    items: [],
+  };
+  const [invoiceData, setInvoiceData] = useState(initialState);
 
   function handleHideInvoicePage() {
     dispatch(hideAddInvoicePage());
+    setInvoiceData(initialState);
   }
+
+  function handleInputChange(event) {
+    setInvoiceData({
+      ...invoiceData,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  function getSenderAddress(address) {
+    setInvoiceData({
+      ...invoiceData,
+      senderAddress: { ...address },
+    });
+  }
+
+  function getClientAddress(address) {
+    setInvoiceData({
+      ...invoiceData,
+      clientAddress: { ...address },
+    });
+  }
+
+  function handleSaveDraft() {
+    console.log("this is a draft");
+  }
+
+  function handleSaveAndSend() {
+    if (!Object.values(invoiceData).includes("")) {
+      const invoice = {
+        ...invoiceData,
+        id: getID(),
+        status: "pending",
+        paymentDue: "",
+        total: "",
+      };
+      dispatch(addInvoice(invoice));
+      dispatch(hideAddInvoicePage());
+      setInvoiceData(initialState);
+    }
+  }
+
+  function getID() {
+    const letters =
+      String.fromCharCode(Math.random() * (90 - 65) + 65) +
+      String.fromCharCode(Math.random() * (90 - 65) + 65);
+    const id =
+      letters +
+      Math.ceil(Math.random() * 9999)
+        .toString()
+        .padStart(4, "0");
+    appData.forEach((invoice) => {
+      if (invoice.id === id) {
+        getID();
+      }
+    });
+    return id;
+  }
+
+  useEffect(() => {
+    if (props.name === "new") {
+      setInvoiceData(initialState);
+    } else {
+      setInvoiceData(invoice);
+    }
+  }, [invoiceID]);
+
+  useEffect(() => {
+    invoicePageRef.current.scroll(0, 0);
+  }, [addInvoicePageVisible]);
 
   return (
     <div
@@ -23,19 +124,28 @@ function AddEditInvoice(props) {
       <form
         className="invoice-form"
         onSubmit={(event) => event.preventDefault()}
+        ref={invoicePageRef}
       >
         <h2 className="invoice-heading">
-          {props.name === "new" ? "New Invoice" : "Edit #"}
+          {props.name === "new" ? "New Invoice" : `Edit #${invoiceID}`}
         </h2>
         <div className="bill-from-box">
           <p className="bill-from-text">Bill From</p>
-          <AddressInput />
+          <AddressInput
+            addressObj={invoiceData.senderAddress}
+            getAddress={getSenderAddress}
+          />
         </div>
         <div className="bill-to-box">
           <p className="bill-to-text">Bill To</p>
           <label>
             Client's Name
-            <input type="text" name="clientName" />
+            <input
+              type="text"
+              name="clientName"
+              value={invoiceData.clientName}
+              onChange={handleInputChange}
+            />
           </label>
           <label>
             Client's Email
@@ -43,18 +153,33 @@ function AddEditInvoice(props) {
               type="text"
               name="clientEmail"
               placeholder="e.g. email@example.com"
+              value={invoiceData.clientEmail}
+              onChange={handleInputChange}
             />
           </label>
-          <AddressInput />
+          <AddressInput
+            addressObj={invoiceData.clientAddress}
+            getAddress={getClientAddress}
+          />
         </div>
         <div className="invoice-date-box">
           <label>
             Invoice Date
-            <input type="date" name="createdAt" />
+            <input
+              type="date"
+              name="createdAt"
+              value={invoiceData.createdAt}
+              onChange={handleInputChange}
+            />
           </label>
           <label>
             Payment Terms
-            <input type="text" name="clientName" />
+            <input
+              type="text"
+              name="paymentTerms"
+              value={invoiceData.paymentTerms}
+              onChange={handleInputChange}
+            />
           </label>
           <label className="project-description">
             Project Description
@@ -62,6 +187,8 @@ function AddEditInvoice(props) {
               type="text"
               name="description"
               placeholder="e.g. Graphic Design Service"
+              value={invoiceData.description}
+              onChange={handleInputChange}
             />
           </label>
         </div>
@@ -105,8 +232,12 @@ function AddEditInvoice(props) {
               >
                 Discard
               </button>
-              <button className="btn btn-save-draft">Save as Draft</button>
-              <button className="btn btn-save-send">Save & Send</button>
+              <button className="btn btn-save-draft" onClick={handleSaveDraft}>
+                Save as Draft
+              </button>
+              <button className="btn btn-save-send" onClick={handleSaveAndSend}>
+                Save & Send
+              </button>
             </div>
           )}
           {props.name === "edit" && (

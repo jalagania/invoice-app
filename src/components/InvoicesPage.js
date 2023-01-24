@@ -78,6 +78,10 @@ function InvoicesPage() {
     return () => document.removeEventListener("click", closeFilterMenu);
   }, []);
 
+  useEffect(() => {
+    setFilteredData(appData);
+  }, [appData]);
+
   return (
     <div className="invoice-page-container">
       <div className="filter-box">

@@ -7,6 +7,10 @@ const dataSlice = createSlice({
     appData: data,
   },
   reducers: {
+    addInvoice: (state, action) => {
+      state.appData.push(action.payload);
+    },
+
     deleteInvoice: (state, action) => {
       state.appData = state.appData.filter(
         (invoice) => invoice.id !== action.payload
