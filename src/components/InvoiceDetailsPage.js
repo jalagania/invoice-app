@@ -5,12 +5,14 @@ import moment from "moment";
 import invoicesPageSlice from "../store/invoicesPageSlice";
 import invoiceDetailsPageSlice from "../store/invoiceDetailsPageSlice";
 import modalDeleteSLice from "../store/modalDeleteSlice";
+import dataSlice from "../store/dataSlice";
 
 function InvoiceDetailsPage() {
   const dispatch = useDispatch();
   const { showInvoicesPage } = invoicesPageSlice.actions;
   const { hideInvoiceDetailsPage } = invoiceDetailsPageSlice.actions;
   const { openModalDelete } = modalDeleteSLice.actions;
+  const { markInvoiceAsPaid } = dataSlice.actions;
   const { appData } = useSelector((store) => store.data);
   const { invoiceID } = useSelector((store) => store.invoiceDetailsPage);
   const invoice = appData.find((invoice) => invoice.id === invoiceID);
@@ -22,6 +24,12 @@ function InvoiceDetailsPage() {
 
   function handleInvoiceDelete() {
     dispatch(openModalDelete());
+  }
+
+  function handleMarkAsPaid() {
+    if (invoice.status === "pending") {
+      dispatch(markInvoiceAsPaid(invoiceID));
+    }
   }
 
   return (
@@ -41,7 +49,9 @@ function InvoiceDetailsPage() {
           <button className="btn btn-delete" onClick={handleInvoiceDelete}>
             Delete
           </button>
-          <button className="btn btn-mark-paid">Mark as Paid</button>
+          <button className="btn btn-mark-paid" onClick={handleMarkAsPaid}>
+            Mark as Paid
+          </button>
         </div>
       </div>
       <div className="invoice-details-box">

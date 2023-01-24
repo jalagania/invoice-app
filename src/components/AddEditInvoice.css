@@ -1,0 +1,218 @@
+.add-edit-invoice-container,
+.add-edit-invoice-bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+}
+
+.add-edit-invoice-container {
+  z-index: 10;
+}
+
+.add-edit-invoice-bg {
+  background-color: rgba(0, 0, 0, 0.6);
+  left: 0;
+}
+
+.invoice-form {
+  width: 72rem;
+  height: 100%;
+  padding: 5.6rem 5.6rem 13.6rem 15.6rem;
+  background-color: var(--invoice-form-bg);
+  border-radius: 0 2rem 2rem 0;
+  position: relative;
+  z-index: 10;
+  overflow-y: scroll;
+}
+
+.invoice-heading {
+  margin-bottom: 4.8rem;
+}
+
+.bill-from-text,
+.bill-to-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--violet);
+  margin: 2.4rem 0;
+}
+
+label {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--input-title);
+}
+
+input {
+  width: 100%;
+  padding: 1.6rem 2rem;
+  margin: 1rem 0 2.4rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--input-text);
+  background-color: var(--invoice-box);
+  border: 1px solid var(--input-border);
+  border-radius: 0.4rem;
+  display: block;
+}
+
+input:focus {
+  outline: 1px solid var(--violet-light);
+}
+
+input::placeholder {
+  color: var(--input-text);
+  opacity: 0.6;
+}
+
+input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+[type="date"] {
+  height: 4.8rem;
+}
+
+[type="number"] {
+  padding: 1.6rem 0;
+  text-align: center;
+}
+
+.invoice-date-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2.4rem;
+}
+
+.project-description {
+  grid-column: 1 / -1;
+}
+
+.item-list-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #777f98;
+  margin: 1.2rem 0 1.5rem 0;
+}
+
+.item-list-head {
+  margin-bottom: 1.6rem;
+
+  display: grid;
+  grid-template-columns: 5fr 1.2fr 2.2fr 1.5fr 1fr;
+  column-gap: 1.6rem;
+}
+
+.item-list-head p {
+  font-size: 1.5rem;
+  color: var(--input-title);
+}
+
+.item-list-body {
+  margin-bottom: 1.8rem;
+  display: grid;
+  grid-template-columns: 5fr 1.2fr 2.2fr 1.5fr 1fr;
+  align-items: center;
+  column-gap: 1.6rem;
+}
+
+.item-list-body input {
+  margin: 0;
+}
+
+.form-total-cost {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gray);
+}
+
+.trash-icon {
+  fill: #888eb0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-add-new-item {
+  width: 100%;
+  padding: 1.6rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--input-title);
+  background-color: var(--button-round);
+  border-radius: 2.4rem;
+}
+
+.invoice-form-buttons {
+  width: 72rem;
+  padding: 3rem 5.6rem 3rem 15.6rem;
+  background-color: var(--invoice-form-bg);
+  border-radius: 0 2rem 2rem 0;
+  box-shadow: 0 7rem 15rem var(--shadow);
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+.new-invoice-buttons,
+.edit-invoice-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 0.8rem;
+}
+
+.invoice-form-buttons button {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 1.6rem 2.4rem;
+  border-radius: 2.4rem;
+}
+
+.btn-discard {
+  color: var(--blue-light);
+  background-color: #f9fafe;
+}
+
+.btn-save-draft,
+.btn-form-cancel {
+  margin-left: auto;
+  color: var(--gray);
+  background-color: var(--navy-light);
+}
+
+.btn-save-send,
+.btn-save-changes {
+  color: white;
+  background-color: var(--violet);
+}
+
+.invoice-form::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.invoice-form::-webkit-scrollbar-thumb {
+  background-color: var(--input-border);
+  border-radius: 0.8rem;
+}
+
+.invoice-form::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+.add-edit-invoice-container,
+.invoice-form-buttons {
+  left: -100%;
+  transition: left ease-in-out 0.5s;
+}
+
+.slide-right {
+  left: 0;
+}
+
+@media (hover: hover) {
+  .trash-icon:hover {
+    fill: var(--red);
+  }
+}

@@ -1,17 +1,20 @@
 import "./InvoicesPage.css";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import arrow from "../assets/icon-arrow-down.svg";
 import plus from "../assets/icon-plus.svg";
 import check from "../assets/icon-check.svg";
 import noInvoice from "../assets/illustration-empty.svg";
 import Invoice from "./Invoice";
+import addInvoiceSlice from "../store/addInvoiceSlice";
 
 function InvoicesPage() {
+  const dispatch = useDispatch();
   const { appData } = useSelector((store) => store.data);
   const [showFilter, setShowFilter] = useState(false);
   const [filterCategory, setFilterCategory] = useState("total");
   const [filteredData, setFilteredData] = useState(appData);
+  const { showAddInvoicePage } = addInvoiceSlice.actions;
 
   const invoiceAmountText =
     document.body.clientWidth > 425
@@ -37,6 +40,10 @@ function InvoicesPage() {
         event.target.closest(".btn-filter").lastElementChild.textContent
       );
     }
+  }
+
+  function handleAddInvoice() {
+    dispatch(showAddInvoicePage());
   }
 
   useEffect(() => {
@@ -152,7 +159,7 @@ function InvoicesPage() {
             </button>
           </div>
         </div>
-        <button className="btn btn-add-invoice">
+        <button className="btn btn-add-invoice" onClick={handleAddInvoice}>
           <div className="plus-icon-wrapper">
             <img src={plus} alt="plus icon" className="plus-icon" />
           </div>

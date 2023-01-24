@@ -12,6 +12,14 @@ const dataSlice = createSlice({
         (invoice) => invoice.id !== action.payload
       );
     },
+
+    markInvoiceAsPaid: (state, action) => {
+      state.appData.forEach((invoice) => {
+        if (invoice.id === action.payload) {
+          invoice.status = "paid";
+        }
+      });
+    },
   },
 });
 

@@ -44,19 +44,16 @@
 .btn-edit {
   color: var(--input-title);
   background-color: var(--button-round);
-  transition: background 0.2s;
 }
 
 .btn-delete {
   color: white;
   background-color: var(--red);
-  transition: background 0.2s;
 }
 
 .btn-mark-paid {
   color: white;
   background-color: var(--violet);
-  transition: background 0.2s;
 }
 
 .invoice-details-box {

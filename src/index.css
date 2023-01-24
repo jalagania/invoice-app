@@ -8,6 +8,7 @@
   --gray: #888eb0;
   --blue-light: #7e88c3;
   --filter-menu: #ffffff;
+  --invoice-form-bg: #ffffff;
   --checkbox: #dfe3fa;
   --invoice-box: #ffffff;
   --invoice-client: #858bb2;
@@ -20,14 +21,16 @@
   --button-round-hover: #dfe3fa;
   --input-text: #0c0e16;
   --input-title: #7e88c3;
+  --input-border: #dfe3fa;
   --shadow: #48549f40;
   --draft: #373b53;
-  --draft-bg: #373b530f;
+  --draft-bg: rgba(55, 59, 83, 0.06);
   --table-bottom: #373b53;
 }
 
 .dark-mode {
   --main-bg: #141625;
+  --invoice-form-bg: #141625;
   --gray: #dfe3fa;
   --black: #1e2139;
   --filter-menu: #252945;
@@ -38,6 +41,7 @@
   --button-round-hover: #ffffff;
   --input-text: #ffffff;
   --input-title: #dfe3fa;
+  --input-border: #252945;
   --draft: #dfe3fa;
   --draft-bg: rgba(223, 227, 250, 0.06);
   --shadow: #00000040;
