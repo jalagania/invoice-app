@@ -4,7 +4,7 @@ import "./AddressInput.css";
 
 function AddressInput(props) {
   const { addInvoicePageVisible } = useSelector(
-    (store) => store.addInvoicePage
+    (store) => store.addEditInvoicePage
   );
   const [address, setAddress] = useState(props.addressObj);
 

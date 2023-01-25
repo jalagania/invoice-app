@@ -6,10 +6,13 @@ import invoicesPageSlice from "../store/invoicesPageSlice";
 import invoiceDetailsPageSlice from "../store/invoiceDetailsPageSlice";
 import modalDeleteSLice from "../store/modalDeleteSlice";
 import dataSlice from "../store/dataSlice";
+import addEditInvoiceSlice from "../store/addEditInvoiceSlice";
 
 function InvoiceDetailsPage() {
   const dispatch = useDispatch();
   const { showInvoicesPage } = invoicesPageSlice.actions;
+  const { showAddEditInvoicePage, showEditInvoicePage } =
+    addEditInvoiceSlice.actions;
   const { hideInvoiceDetailsPage } = invoiceDetailsPageSlice.actions;
   const { openModalDelete } = modalDeleteSLice.actions;
   const { markInvoiceAsPaid } = dataSlice.actions;
@@ -22,7 +25,12 @@ function InvoiceDetailsPage() {
     dispatch(showInvoicesPage());
   }
 
-  function handleEditInvoice() {}
+  function handleEditInvoice() {
+    dispatch(showEditInvoicePage());
+    setTimeout(() => {
+      dispatch(showAddEditInvoicePage());
+    }, 0);
+  }
 
   function handleInvoiceDelete() {
     dispatch(openModalDelete());

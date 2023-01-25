@@ -1,0 +1,26 @@
+.add-edit-invoice-container,
+.add-edit-invoice-bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+}
+
+.add-edit-invoice-container {
+  left: -100%;
+  transition: left ease-in-out 0.5s;
+  z-index: 10;
+}
+
+.add-edit-invoice-bg {
+  background-color: rgba(0, 0, 0, 0.6);
+  left: 0;
+}
+
+.slide-right {
+  left: 0;
+}
+
+.hidden {
+  display: none;
+}

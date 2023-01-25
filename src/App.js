@@ -4,8 +4,8 @@ import Sidebar from "./components/Sidebar";
 import InvoicesPage from "./components/InvoicesPage";
 import InvoiceDetailsPage from "./components/InvoiceDetailsPage";
 import ModalDelete from "./components/ModalDelete";
-import AddInvoicePage from "./components/AddInvoicePage";
 import { useEffect } from "react";
+import AddEditInvoicePage from "./components/AddEditInvoicePage";
 
 function App() {
   const { invoicesPageVisible } = useSelector((store) => store.invoicesPage);
@@ -21,7 +21,7 @@ function App() {
   return (
     <div>
       <Sidebar />
-      <AddInvoicePage />
+      <AddEditInvoicePage />
       <div className="page-container">
         <div className="invoice-container">
           {invoicesPageVisible && <InvoicesPage />}

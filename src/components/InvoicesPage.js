@@ -6,7 +6,7 @@ import plus from "../assets/icon-plus.svg";
 import check from "../assets/icon-check.svg";
 import noInvoice from "../assets/illustration-empty.svg";
 import Invoice from "./Invoice";
-import addInvoiceSlice from "../store/addInvoiceSlice";
+import addEditInvoiceSlice from "../store/addEditInvoiceSlice";
 
 function InvoicesPage() {
   const dispatch = useDispatch();
@@ -14,7 +14,8 @@ function InvoicesPage() {
   const [showFilter, setShowFilter] = useState(false);
   const [filterCategory, setFilterCategory] = useState("total");
   const [filteredData, setFilteredData] = useState(appData);
-  const { showAddInvoicePage } = addInvoiceSlice.actions;
+  const { showAddEditInvoicePage, showAddInvoicePage } =
+    addEditInvoiceSlice.actions;
 
   const invoiceAmountText =
     document.body.clientWidth > 425
@@ -44,6 +45,9 @@ function InvoicesPage() {
 
   function handleAddInvoice() {
     dispatch(showAddInvoicePage());
+    setTimeout(() => {
+      dispatch(showAddEditInvoicePage());
+    }, 0);
   }
 
   useEffect(() => {
