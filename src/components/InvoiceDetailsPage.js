@@ -22,6 +22,8 @@ function InvoiceDetailsPage() {
     dispatch(showInvoicesPage());
   }
 
+  function handleEditInvoice() {}
+
   function handleInvoiceDelete() {
     dispatch(openModalDelete());
   }
@@ -45,7 +47,9 @@ function InvoiceDetailsPage() {
           {invoice.status}
         </p>
         <div className="invoice-details-buttons">
-          <button className="btn btn-edit">Edit</button>
+          <button className="btn btn-edit" onClick={handleEditInvoice}>
+            Edit
+          </button>
           <button className="btn btn-delete" onClick={handleInvoiceDelete}>
             Delete
           </button>

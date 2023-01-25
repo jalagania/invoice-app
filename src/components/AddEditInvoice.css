@@ -85,6 +85,53 @@ input::-webkit-inner-spin-button {
   column-gap: 2.4rem;
 }
 
+.payment-term-menu {
+  position: relative;
+}
+
+.payment-term-menu button {
+  padding: 1.6rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: left;
+  color: var(--input-text);
+  background-color: var(--invoice-box);
+  transition: all 0.2s;
+}
+
+.payment-term-menu button:not(:last-child) {
+  border-bottom: 1px solid var(--input-border);
+}
+
+.btn-payment-term-menu-head {
+  width: 100%;
+  padding: 1.6rem 2rem;
+  margin: 1rem 0 2.4rem 0;
+  border: 1px solid var(--input-border);
+  border-radius: 0.4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-payment-term-menu-head img {
+  transition: all 0.2s;
+}
+
+.btn-payment-term-menu-body {
+  width: 100%;
+  border-radius: 0.4rem;
+  box-shadow: 0 1rem 2rem var(--shadow);
+  overflow: hidden;
+  position: absolute;
+  top: 7rem;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
 .project-description {
   grid-column: 1 / -1;
 }
@@ -211,7 +258,15 @@ input::-webkit-inner-spin-button {
   left: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 @media (hover: hover) {
+  .btn-payment-term:hover {
+    color: var(--violet);
+  }
+
   .trash-icon:hover {
     fill: var(--red);
   }

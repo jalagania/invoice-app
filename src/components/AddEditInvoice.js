@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import AddressInput from "./AddressInput";
 import addInvoiceSlice from "../store/addInvoiceSlice";
 import dataSlice from "../store/dataSlice";
+import arrow from "../assets/icon-arrow-down.svg";
+import moment from "moment";
 
 function AddEditInvoice(props) {
   const dispatch = useDispatch();
@@ -22,7 +24,6 @@ function AddEditInvoice(props) {
   const initialState = {
     createdAt: "",
     description: "",
-    paymentTerms: "",
     clientName: "",
     clientEmail: "",
     senderAddress: {
@@ -40,6 +41,8 @@ function AddEditInvoice(props) {
     items: [],
   };
   const [invoiceData, setInvoiceData] = useState(initialState);
+  const [paymentTerm, setPaymentTerm] = useState(30);
+  const [showPaymentTermMenu, setShowPaymentTermMenu] = useState(false);
 
   function handleHideInvoicePage() {
     dispatch(hideAddInvoicePage());
@@ -67,8 +70,28 @@ function AddEditInvoice(props) {
     });
   }
 
+  function handlePaymentTermMenu() {
+    setShowPaymentTermMenu(!showPaymentTermMenu);
+  }
+
+  function handlePaymentTerm(event) {
+    setPaymentTerm(+event.target.closest(".btn-payment-term").classList[1]);
+    setShowPaymentTermMenu(false);
+  }
+
   function handleSaveDraft() {
-    console.log("this is a draft");
+    const invoice = {
+      ...invoiceData,
+      id: getID(),
+      status: "draft",
+      paymentDue: moment(invoiceData.createdAt)
+        .add(paymentTerm, "days")
+        .format("YYYY-MM-DD"),
+      total: "",
+    };
+    dispatch(addInvoice(invoice));
+    dispatch(hideAddInvoicePage());
+    setInvoiceData(initialState);
   }
 
   function handleSaveAndSend() {
@@ -77,7 +100,9 @@ function AddEditInvoice(props) {
         ...invoiceData,
         id: getID(),
         status: "pending",
-        paymentDue: "",
+        paymentDue: moment(invoiceData.createdAt)
+          .add(paymentTerm, "days")
+          .format("YYYY-MM-DD"),
         total: "",
       };
       dispatch(addInvoice(invoice));
@@ -109,10 +134,12 @@ function AddEditInvoice(props) {
     } else {
       setInvoiceData(invoice);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [invoiceID]);
 
   useEffect(() => {
     invoicePageRef.current.scroll(0, 0);
+    setPaymentTerm(30);
   }, [addInvoicePageVisible]);
 
   return (
@@ -174,12 +201,53 @@ function AddEditInvoice(props) {
           </label>
           <label>
             Payment Terms
-            <input
-              type="text"
-              name="paymentTerms"
-              value={invoiceData.paymentTerms}
-              onChange={handleInputChange}
-            />
+            <div className="payment-term-menu">
+              <button
+                className="btn-payment-term-menu-head"
+                onClick={handlePaymentTermMenu}
+              >
+                <span>
+                  Net {paymentTerm} {paymentTerm > 1 ? "Days" : "Day"}
+                </span>
+                <img
+                  src={arrow}
+                  alt="down arrow"
+                  className={`down-arrow ${
+                    showPaymentTermMenu ? "rotate" : ""
+                  }`}
+                />
+              </button>
+              <div
+                className={`btn-payment-term-menu-body ${
+                  showPaymentTermMenu ? "" : "hidden"
+                }`}
+              >
+                <button
+                  className="btn-payment-term 1"
+                  onClick={handlePaymentTerm}
+                >
+                  Net 1 day
+                </button>
+                <button
+                  className="btn-payment-term 7"
+                  onClick={handlePaymentTerm}
+                >
+                  Net 7 days
+                </button>
+                <button
+                  className="btn-payment-term 14"
+                  onClick={handlePaymentTerm}
+                >
+                  Net 14 days
+                </button>
+                <button
+                  className="btn-payment-term 30"
+                  onClick={handlePaymentTerm}
+                >
+                  Net 30 days
+                </button>
+              </div>
+            </div>
           </label>
           <label className="project-description">
             Project Description
@@ -259,7 +327,3 @@ function AddEditInvoice(props) {
 }
 
 export default AddEditInvoice;
-
-//
-//         Net 1 day Net 7 days Net 14 days Net
-//     30 days

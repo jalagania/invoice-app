@@ -61,6 +61,7 @@ function InvoicesPage() {
     if (filterCategory === "Paid") {
       setFilteredData(appData.filter((invoice) => invoice.status === "paid"));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterCategory]);
 
   useEffect(() => {

@@ -17,12 +17,14 @@ function AddressInput(props) {
 
   useEffect(() => {
     props.getAddress(address);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
 
   useEffect(() => {
     if (!addInvoicePageVisible) {
       setAddress(props.addressObj);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addInvoicePageVisible]);
 
   return (
