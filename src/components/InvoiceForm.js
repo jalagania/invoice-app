@@ -5,7 +5,9 @@ import AddressInput from "./AddressInput";
 import addInvoiceSlice from "../store/addEditInvoiceSlice";
 import dataSlice from "../store/dataSlice";
 import arrow from "../assets/icon-arrow-down.svg";
+import trash from "../assets/icon-delete.svg";
 import moment from "moment";
+import { cloneDeep } from "lodash";
 
 function InvoiceForm(props) {
   const dispatch = useDispatch();
@@ -42,11 +44,21 @@ function InvoiceForm(props) {
     items: [],
   };
 
+  const itemObj = {
+    name: "",
+    quantity: "",
+    price: "",
+    total: "0.00",
+  };
+
   const initialInvoice = props.name === "new" ? invoiceObj : invoice;
   const [invoiceData, setInvoiceData] = useState(initialInvoice);
-  const initialTerm = props.name === "new" ? 30 : invoiceData.paymentTerms;
+  const initialTerm = props.name === "new" ? 30 : invoice.paymentTerms || 30;
   const [paymentTerm, setPaymentTerm] = useState(initialTerm);
   const [showPaymentTermMenu, setShowPaymentTermMenu] = useState(false);
+  const initialList = props.name === "new" ? [] : invoice.items;
+  const [itemList, setItemList] = useState(initialList);
+  const [listItem, setListItem] = useState(itemObj);
   const [error, setError] = useState(false);
 
   function getID() {
@@ -76,7 +88,7 @@ function InvoiceForm(props) {
         myArr.push(element);
       }
     });
-    return !myArr.flat().includes("");
+    return !myArr.flat().includes("") && obj.items.length > 0;
   }
 
   function closeInvoiceForm() {
@@ -117,6 +129,32 @@ function InvoiceForm(props) {
     setShowPaymentTermMenu(false);
   }
 
+  function handleItemChange(event, index) {
+    const items = cloneDeep(invoiceData.items);
+    items[index][event.target.name] = event.target.value;
+    items[index].total = items[index].price * items[index].quantity;
+    setInvoiceData({
+      ...invoiceData,
+      items: [...items],
+    });
+  }
+
+  function handleAddItemButton() {
+    setInvoiceData({
+      ...invoiceData,
+      items: [...invoiceData.items, itemObj],
+    });
+  }
+
+  function handleItemDeleteButton(id) {
+    setInvoiceData({
+      ...invoiceData,
+      items: invoiceData.items.filter(
+        (item) => invoiceData.items.indexOf(item) !== id
+      ),
+    });
+  }
+
   function handleDiscardButton() {
     closeInvoiceForm();
   }
@@ -129,7 +167,7 @@ function InvoiceForm(props) {
       paymentDue: moment(invoiceData.createdAt)
         .add(paymentTerm, "days")
         .format("YYYY-MM-DD"),
-      total: "",
+      total: invoiceData.items.reduce((sum, num) => sum + +num.total, 0),
     };
     dispatch(addInvoice(invoice));
     closeInvoiceForm();
@@ -144,7 +182,7 @@ function InvoiceForm(props) {
         paymentDue: moment(invoiceData.createdAt)
           .add(paymentTerm, "days")
           .format("YYYY-MM-DD"),
-        // total: "", DO NOT FORGET!
+        total: invoiceData.items.reduce((sum, num) => sum + +num.total, 0),
       };
       dispatch(addInvoice(invoice));
       closeInvoiceForm();
@@ -169,7 +207,7 @@ function InvoiceForm(props) {
           .add(paymentTerm, "days")
           .format("YYYY-MM-DD"),
         status: invoiceData.status === "draft" ? "pending" : invoiceData.status,
-        // total: "", DO NOT FORGET!
+        total: invoiceData.items.reduce((sum, num) => sum + +num.total, 0),
       };
       dispatch(editInvoice([invoiceID, invoice]));
       closeInvoiceForm();
@@ -304,24 +342,49 @@ function InvoiceForm(props) {
           <p>Price</p>
           <p>Total</p>
         </div>
-        {/* <div className="item-list-body">
-          <input type="text" />
-          <input type="number" />
-          <input type="number" />
-          <p className="form-total-cost"></p>
-          <svg
-            className="trash-icon"
-            width="13"
-            height="16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
-              fillRule="nonzero"
-            />
-          </svg>
-        </div> */}
-        <button className="btn btn-add-new-item">+ Add New Item</button>
+        <div className="item-list-body">
+          {invoiceData.items.map((item, index) => {
+            return (
+              <div key={index} className="list-item-box">
+                <input
+                  type="text"
+                  name="name"
+                  value={item.name}
+                  onChange={(e) => handleItemChange(e, index)}
+                />
+                <input
+                  type="number"
+                  placeholder="0"
+                  name="quantity"
+                  value={item.quantity}
+                  onChange={(e) => handleItemChange(e, index)}
+                />
+                <input
+                  type="number"
+                  placeholder="0.00"
+                  name="price"
+                  value={item.price}
+                  onChange={(e) => handleItemChange(e, index)}
+                />
+                <p className="form-total-cost">
+                  {item.total.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                </p>
+                <img
+                  src={trash}
+                  alt="trash icon"
+                  className="trash-icon"
+                  onClick={() => handleItemDeleteButton(index)}
+                />
+              </div>
+            );
+          })}
+        </div>
+        <button className="btn btn-add-new-item" onClick={handleAddItemButton}>
+          + Add New Item
+        </button>
       </div>
       {error && (
         <div className="error-text-box">

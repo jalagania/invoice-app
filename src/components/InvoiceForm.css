@@ -141,6 +141,13 @@ input::-webkit-inner-spin-button {
 
 .item-list-body {
   margin-bottom: 1.8rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.list-item-box {
   display: grid;
   grid-template-columns: 5fr 1.2fr 2.2fr 1.5fr 1fr;
   align-items: center;
@@ -158,7 +165,6 @@ input::-webkit-inner-spin-button {
 }
 
 .trash-icon {
-  fill: #888eb0;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -261,6 +267,22 @@ input::-webkit-inner-spin-button {
   }
 
   .trash-icon:hover {
-    fill: var(--red);
+    filter: hue-rotate(125deg) contrast(2.5);
+  }
+
+  .btn-discard:hover {
+    color: #7e88c3;
+    background-color: var(--button-round-hover);
+  }
+
+  .btn-save-draft:hover,
+  .btn-form-cancel:hover {
+    color: var(--gray);
+    background-color: var(--black);
+  }
+
+  .btn-save-send:hover,
+  .btn-save-changes:hover {
+    background-color: var(--violet-light);
   }
 }

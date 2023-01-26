@@ -134,7 +134,7 @@ function InvoiceDetailsPage() {
                     <td>{item.quantity}</td>
                     <td>
                       £{" "}
-                      {item.price.toLocaleString(undefined, {
+                      {Number(item.price).toLocaleString(undefined, {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                       })}
@@ -154,7 +154,6 @@ function InvoiceDetailsPage() {
           <div className="price-table-bottom">
             <p className="invoice-total-text">Amount Due</p>
             <p className="invoice-details-total">
-              {" "}
               £{" "}
               {invoice.total.toLocaleString(undefined, {
                 minimumFractionDigits: 2,

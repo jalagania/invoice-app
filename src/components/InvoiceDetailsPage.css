@@ -133,25 +133,6 @@
   align-self: end;
 }
 
-@media (hover: hover) {
-  .btn-go-back:hover {
-    color: #888eb0;
-  }
-
-  .btn-edit:hover {
-    color: #7e88c3;
-    background-color: var(--button-round-hover);
-  }
-
-  .btn-delete:hover {
-    background-color: var(--red-light);
-  }
-
-  .btn-mark-paid:hover {
-    background-color: var(--violet-light);
-  }
-}
-
 .invoice-price-table {
   margin-top: 5rem;
   border-radius: 0.8rem;
@@ -227,4 +208,23 @@ tbody tr:last-child td {
 .invoice-details-total {
   font-size: 2.4rem;
   font-weight: 700;
+}
+
+@media (hover: hover) {
+  .btn-go-back:hover {
+    color: #888eb0;
+  }
+
+  .btn-edit:hover {
+    color: #7e88c3;
+    background-color: var(--button-round-hover);
+  }
+
+  .btn-delete:hover {
+    background-color: var(--red-light);
+  }
+
+  .btn-mark-paid:hover {
+    background-color: var(--violet-light);
+  }
 }
