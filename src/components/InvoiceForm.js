@@ -56,10 +56,9 @@ function InvoiceForm(props) {
   const initialTerm = props.name === "new" ? 30 : invoice.paymentTerms || 30;
   const [paymentTerm, setPaymentTerm] = useState(initialTerm);
   const [showPaymentTermMenu, setShowPaymentTermMenu] = useState(false);
-  const initialList = props.name === "new" ? [] : invoice.items;
-  const [itemList, setItemList] = useState(initialList);
-  const [listItem, setListItem] = useState(itemObj);
   const [error, setError] = useState(false);
+  const hideOnPhone =
+    window.innerWidth <= 425 && invoiceData.items.length === 0;
 
   function getID() {
     const letters =
@@ -246,6 +245,7 @@ function InvoiceForm(props) {
           <input
             type="text"
             name="clientName"
+            maxLength={30}
             value={invoiceData.clientName}
             onChange={handleInputChange}
           />
@@ -253,8 +253,9 @@ function InvoiceForm(props) {
         <label>
           Client's Email
           <input
-            type="text"
+            type="email"
             name="clientEmail"
+            maxLength={30}
             placeholder="e.g. email@example.com"
             value={invoiceData.clientEmail}
             onChange={handleInputChange}
@@ -328,6 +329,7 @@ function InvoiceForm(props) {
           <input
             type="text"
             name="description"
+            maxLength={30}
             placeholder="e.g. Graphic Design Service"
             value={invoiceData.description}
             onChange={handleInputChange}
@@ -342,36 +344,59 @@ function InvoiceForm(props) {
           <p>Price</p>
           <p>Total</p>
         </div>
+        {hideOnPhone && (
+          <div className="item-list-head mobile">
+            <p>Item Name</p>
+            <p>Qty.</p>
+            <p>Price</p>
+            <p>Total</p>
+          </div>
+        )}
         <div className="item-list-body">
           {invoiceData.items.map((item, index) => {
             return (
               <div key={index} className="list-item-box">
-                <input
-                  type="text"
-                  name="name"
-                  value={item.name}
-                  onChange={(e) => handleItemChange(e, index)}
-                />
-                <input
-                  type="number"
-                  placeholder="0"
-                  name="quantity"
-                  value={item.quantity}
-                  onChange={(e) => handleItemChange(e, index)}
-                />
-                <input
-                  type="number"
-                  placeholder="0.00"
-                  name="price"
-                  value={item.price}
-                  onChange={(e) => handleItemChange(e, index)}
-                />
-                <p className="form-total-cost">
-                  {item.total.toLocaleString(undefined, {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  })}
-                </p>
+                <label>
+                  <span>Item Name</span>
+                  <input
+                    type="text"
+                    name="name"
+                    maxLength={30}
+                    value={item.name}
+                    onChange={(e) => handleItemChange(e, index)}
+                  />
+                </label>
+                <label>
+                  <span>Qty.</span>
+                  <input
+                    type="number"
+                    placeholder="0"
+                    name="quantity"
+                    max={5}
+                    value={item.quantity}
+                    onChange={(e) => handleItemChange(e, index)}
+                  />
+                </label>
+                <label>
+                  <span>Price</span>
+                  <input
+                    type="number"
+                    placeholder="0.00"
+                    name="price"
+                    max={15000}
+                    value={item.price}
+                    onChange={(e) => handleItemChange(e, index)}
+                  />
+                </label>
+                <label>
+                  <span>Total</span>
+                  <p className="form-total-cost">
+                    {item.total.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  </p>
+                </label>
                 <img
                   src={trash}
                   alt="trash icon"

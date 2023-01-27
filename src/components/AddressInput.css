@@ -3,3 +3,13 @@
   grid-template-columns: repeat(3, 1fr);
   column-gap: 2.4rem;
 }
+
+@media (max-width: 425px) {
+  .input-grid-box {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .input-grid-box label:last-child {
+    grid-column: 1 / -1;
+  }
+}

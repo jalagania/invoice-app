@@ -6,7 +6,9 @@ import sun from "../assets/icon-sun.svg";
 import avatar from "../assets/image-avatar.jpg";
 
 function Sidebar() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
 
   document.body.className = darkMode ? "dark-mode" : "";
 
@@ -18,8 +20,8 @@ function Sidebar() {
     <div className="sidebar">
       <div className="logo-wrapper">
         <img src={logo} alt="logo" className="logo" />
+        <div className="logo-bottom"></div>
       </div>
-      <div className="logo-bottom"></div>
       <div className="theme-box">
         <img
           src={moon}

@@ -6,4 +6,23 @@
   max-width: 73rem;
   margin: 0 auto;
   padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    margin-left: 0;
+  }
+
+  .invoice-container {
+    max-width: 70rem;
+    padding-top: 13rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .invoice-container {
+    padding: 12rem 2.4rem 3.2rem 2.4rem;
+    position: relative;
+  }
 }

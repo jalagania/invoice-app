@@ -123,7 +123,7 @@
   grid-area: 2 / 2 / 4;
 }
 
-.invoice-client-sendTo {
+.invoice-client-emailTo {
   grid-area: 2 / 3;
 }
 
@@ -142,6 +142,10 @@
 .price-table-body {
   width: 100%;
   background-color: var(--button-round);
+}
+
+.item-price-mobile {
+  display: none;
 }
 
 table {
@@ -226,5 +230,95 @@ tbody tr:last-child td {
 
   .btn-mark-paid:hover {
     background-color: var(--violet-light);
+  }
+}
+
+@media (max-width: 425px) {
+  .invoice-status-box {
+    justify-content: space-between;
+  }
+
+  .invoice-details-buttons {
+    width: 100%;
+    margin: 0;
+    padding: 2.4rem 2rem;
+    background-color: var(--invoice-box);
+    position: absolute;
+    left: 0;
+    bottom: -12rem;
+    justify-content: center;
+  }
+
+  .invoice-details-box {
+    padding: 2.4rem;
+    position: relative;
+  }
+
+  .invoce-details-info {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 3rem;
+  }
+
+  .invoice-description {
+    margin: 0;
+  }
+
+  .invoice-sender-address {
+    text-align: left;
+    grid-area: 2 / 1;
+  }
+
+  .invoice-details-date {
+    grid-area: 3 / 1;
+  }
+
+  .invoice-details-billTo {
+    grid-area: 3 / 2 / 4;
+  }
+
+  .invoice-client-emailTo {
+    grid-area: 4 / 1;
+  }
+
+  .invoice-due-date {
+    margin-top: 3rem;
+    grid-area: 3 / 1;
+    align-self: end;
+  }
+
+  .item-price-mobile {
+    display: block;
+    color: #7e88c3;
+    margin-top: 0.8rem;
+  }
+
+  thead {
+    display: none;
+  }
+
+  td:nth-child(2),
+  td:nth-child(3) {
+    display: none;
+  }
+
+  td:first-child {
+    padding-left: 2.4rem;
+  }
+
+  td:last-child {
+    padding-right: 2.4rem;
+  }
+
+  tbody tr:first-child td {
+    padding-top: 2.4rem;
+    padding-bottom: 2.4rem;
+  }
+
+  tbody tr:last-child td {
+    padding-bottom: 2.4rem;
+  }
+
+  .price-table-bottom {
+    padding: 2.4rem;
   }
 }

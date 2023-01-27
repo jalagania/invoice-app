@@ -34,6 +34,7 @@ function AddressInput(props) {
         <input
           type="text"
           name="street"
+          maxLength={30}
           value={address.street}
           onChange={handleInputChange}
         />
@@ -44,6 +45,7 @@ function AddressInput(props) {
           <input
             type="text"
             name="city"
+            maxLength={30}
             value={address.city}
             onChange={handleInputChange}
           />
@@ -53,6 +55,7 @@ function AddressInput(props) {
           <input
             type="text"
             name="postCode"
+            maxLength={30}
             value={address.postCode}
             onChange={handleInputChange}
           />
@@ -62,6 +65,7 @@ function AddressInput(props) {
           <input
             type="text"
             name="country"
+            maxLength={30}
             value={address.country}
             onChange={handleInputChange}
           />

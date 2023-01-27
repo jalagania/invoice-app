@@ -68,3 +68,14 @@
     background-color: var(--red-light);
   }
 }
+
+@media (max-width: 425px) {
+  .modal-content {
+    width: 32.5rem;
+    padding: 3.2rem;
+  }
+
+  .modal-buttons {
+    margin-top: 2.4rem;
+  }
+}

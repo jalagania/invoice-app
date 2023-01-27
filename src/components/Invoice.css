@@ -74,3 +74,35 @@
 .arrow {
   justify-self: end;
 }
+
+@media (max-width: 425px) {
+  .invoice-box {
+    padding: 2.4rem;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2.4rem;
+  }
+
+  .payment-due,
+  .total {
+    text-align: left;
+    grid-area: 2 / 1;
+  }
+
+  .payment-due {
+    align-self: start;
+  }
+
+  .total {
+    align-self: end;
+  }
+
+  .client-name,
+  .status {
+    grid-column: 2;
+    justify-self: end;
+  }
+
+  .arrow {
+    display: none;
+  }
+}

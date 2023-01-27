@@ -17,11 +17,17 @@
 .logo-wrapper {
   width: 100%;
   height: 10rem;
-  background-image: linear-gradient(var(--violet) 80%, transparent);
+  background-image: linear-gradient(
+    to bottom,
+    var(--violet) 75%,
+    transparent 75%
+  );
 
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
 }
 
 .logo {
@@ -59,5 +65,37 @@
 @media (hover: hover) {
   .theme-icon:hover {
     filter: brightness(1.5);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: 8rem;
+    border-radius: 0;
+    flex-direction: row;
+  }
+
+  .logo-wrapper {
+    width: 8rem;
+    height: 100%;
+    border-radius: 0 2rem 2rem 0;
+  }
+
+  .logo-bottom {
+    height: 4rem;
+    margin-top: -4rem;
+  }
+
+  .theme-box {
+    width: auto;
+    padding: 3.2rem;
+    margin: 0 0 0 auto;
+    border-bottom: none;
+    border-right: 1px solid #494e6e;
+  }
+
+  .avatar {
+    margin: 0 2.4rem;
   }
 }

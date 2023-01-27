@@ -126,7 +126,8 @@ input::-webkit-inner-spin-button {
   margin: 1.2rem 0 1.5rem 0;
 }
 
-.item-list-head {
+.item-list-head,
+.item-list-head.mobile {
   margin-bottom: 1.6rem;
 
   display: grid;
@@ -140,7 +141,7 @@ input::-webkit-inner-spin-button {
 }
 
 .item-list-body {
-  margin-bottom: 1.8rem;
+  margin-bottom: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -152,6 +153,10 @@ input::-webkit-inner-spin-button {
   grid-template-columns: 5fr 1.2fr 2.2fr 1.5fr 1fr;
   align-items: center;
   column-gap: 1.6rem;
+}
+
+.list-item-box label span {
+  display: none;
 }
 
 .item-list-body input {
@@ -284,5 +289,107 @@ input::-webkit-inner-spin-button {
   .btn-save-send:hover,
   .btn-save-changes:hover {
     background-color: var(--violet-light);
+  }
+}
+
+@media (max-width: 768px) {
+  .invoice-form {
+    width: 61rem;
+    height: 90vh;
+    padding: 5.6em 5.6rem 11.6rem 5.6rem;
+    margin-top: 8rem;
+  }
+
+  .invoice-form-buttons {
+    width: 61rem;
+    padding: 3rem 5.6rem 3rem 5.6rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .invoice-form {
+    width: 100%;
+    margin: 0;
+    padding: 13rem 2.4rem 12rem 2.4rem;
+  }
+
+  .invoice-date-box {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-payment-term-menu-body {
+    z-index: 10;
+  }
+
+  .item-list-head {
+    display: none;
+  }
+
+  .item-list-heading {
+    margin: 1.2rem 0 3.5rem 0;
+  }
+
+  .item-list-body {
+    gap: 4rem;
+  }
+
+  .list-item-box {
+    grid-template-columns: 1.3fr 2fr 2fr 1fr;
+    row-gap: 2.4rem;
+  }
+
+  .list-item-box label:nth-child(1) {
+    grid-area: 1 / 1 / 1 / 5;
+  }
+
+  .list-item-box label:nth-child(2) {
+    grid-area: 2 / 1;
+  }
+
+  .list-item-box label:nth-child(3) {
+    grid-area: 2 / 2;
+  }
+
+  .list-item-box label:nth-child(4) {
+    grid-area: 2 / 3;
+  }
+
+  .list-item-box img {
+    grid-area: 2 / 4;
+    justify-self: end;
+    margin-top: 1.8rem;
+  }
+
+  .list-item-box input,
+  .list-item-box p {
+    margin-top: 1rem;
+  }
+
+  .list-item-box p {
+    padding: 1.6rem 0;
+  }
+
+  .list-item-box label span {
+    display: block;
+  }
+
+  [type="number"] {
+    padding: 1.6rem;
+    text-align: left;
+  }
+
+  .btn-add-new-item {
+    margin-top: 2.5rem;
+  }
+
+  .invoice-form-buttons {
+    width: 100%;
+    padding: 2rem 2.4rem;
+    border-radius: 0;
+  }
+
+  .invoice-form-buttons button {
+    font-size: 1.3rem;
+    padding: 1.6rem;
   }
 }

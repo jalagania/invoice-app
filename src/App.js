@@ -1,11 +1,12 @@
 import "./App.css";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Sidebar from "./components/Sidebar";
 import InvoicesPage from "./components/InvoicesPage";
 import InvoiceDetailsPage from "./components/InvoiceDetailsPage";
 import ModalDelete from "./components/ModalDelete";
-import { useEffect } from "react";
 import AddEditInvoicePage from "./components/AddEditInvoicePage";
+import Attribution from "./components/Attribution";
 
 function App() {
   const { invoicesPageVisible } = useSelector((store) => store.invoicesPage);
@@ -29,6 +30,7 @@ function App() {
           {modalDeleteVisible && <ModalDelete />}
         </div>
       </div>
+      <Attribution />
     </div>
   );
 }

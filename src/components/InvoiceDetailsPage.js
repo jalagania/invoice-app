@@ -105,7 +105,7 @@ function InvoiceDetailsPage() {
               </p>
             </div>
           </div>
-          <div className="invoice-client-sendTo">
+          <div className="invoice-client-emailTo">
             <p className="invoice-email-text">Email To</p>
             <p className="invoice-client-email">{invoice.clientEmail}</p>
           </div>
@@ -130,7 +130,12 @@ function InvoiceDetailsPage() {
               {invoice.items.map((item, index) => {
                 return (
                   <tr key={index}>
-                    <td>{item.name}</td>
+                    <td>
+                      <p>{item.name}</p>
+                      <p className="item-price-mobile">
+                        {item.quantity} x £ {item.price}
+                      </p>
+                    </td>
                     <td>{item.quantity}</td>
                     <td>
                       £{" "}

@@ -1,6 +1,5 @@
 .invoice-amount-text {
   font-size: 1.5rem;
-  font-weight: 500;
   color: var(--gray);
   margin-top: 0.8rem;
 }
@@ -101,7 +100,7 @@
 }
 
 .invoices-container {
-  margin: 6.5rem 0;
+  margin-top: 6.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
@@ -148,5 +147,15 @@
 
   .btn-add-invoice:hover {
     background-color: var(--violet-light);
+  }
+}
+
+@media (max-width: 425px) {
+  .invoices-container {
+    margin: 3.2rem 0;
+  }
+
+  .filter-body {
+    width: 15rem;
   }
 }
