@@ -324,7 +324,7 @@ function InvoiceForm(props) {
             <input
               type="text"
               name="description"
-              maxLength={30}
+              maxLength={50}
               placeholder="e.g. Graphic Design Service"
               value={invoiceData.description}
               onChange={handleInputChange}
