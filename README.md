@@ -2,7 +2,7 @@
 
 ### Links
 
-- Live Site URL:
+- Live Site URL: https://invoice-app-beka.netlify.app
 
 ### Built with
 
