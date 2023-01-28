@@ -218,210 +218,205 @@ function InvoiceForm(props) {
     }
   }
 
-  useEffect(() => {
-    invoicePageRef.current.scroll(0, 0);
-  }, [addEditInvoicePageVisible]);
-
   return (
-    <form
-      className="invoice-form"
-      onSubmit={(event) => event.preventDefault()}
-      ref={invoicePageRef}
-    >
-      <h2 className="invoice-heading">
-        {props.name === "new" ? "New Invoice" : `Edit #${invoiceID}`}
-      </h2>
-      <div className="bill-from-box">
-        <p className="bill-from-text">Bill From</p>
-        <AddressInput
-          addressObj={invoiceData.senderAddress}
-          getAddress={getSenderAddress}
-        />
-      </div>
-      <div className="bill-to-box">
-        <p className="bill-to-text">Bill To</p>
-        <label>
-          Client's Name
-          <input
-            type="text"
-            name="clientName"
-            maxLength={30}
-            value={invoiceData.clientName}
-            onChange={handleInputChange}
+    <form className="invoice-form" onSubmit={(event) => event.preventDefault()}>
+      <div className="form-inner-wrapper" ref={invoicePageRef}>
+        <h2 className="invoice-heading">
+          {props.name === "new" ? "New Invoice" : `Edit #${invoiceID}`}
+        </h2>
+        <div className="bill-from-box">
+          <p className="bill-from-text">Bill From</p>
+          <AddressInput
+            addressObj={invoiceData.senderAddress}
+            getAddress={getSenderAddress}
           />
-        </label>
-        <label>
-          Client's Email
-          <input
-            type="email"
-            name="clientEmail"
-            maxLength={30}
-            placeholder="e.g. email@example.com"
-            value={invoiceData.clientEmail}
-            onChange={handleInputChange}
-          />
-        </label>
-        <AddressInput
-          addressObj={invoiceData.clientAddress}
-          getAddress={getClientAddress}
-        />
-      </div>
-      <div className="invoice-date-box">
-        <label>
-          Invoice Date
-          <input
-            type="date"
-            name="createdAt"
-            value={invoiceData.createdAt}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Payment Terms
-          <div className="payment-term-menu">
-            <button
-              className="btn-payment-term-menu-head"
-              onClick={handlePaymentTermMenu}
-            >
-              <span>
-                Net {paymentTerm} {paymentTerm > 1 ? "Days" : "Day"}
-              </span>
-              <img
-                src={arrow}
-                alt="down arrow"
-                className={`down-arrow ${showPaymentTermMenu ? "rotate" : ""}`}
-              />
-            </button>
-            <div
-              className={`btn-payment-term-menu-body ${
-                showPaymentTermMenu ? "" : "hidden"
-              }`}
-            >
-              <button
-                className="btn-payment-term 1"
-                onClick={handlePaymentTerm}
-              >
-                Net 1 day
-              </button>
-              <button
-                className="btn-payment-term 7"
-                onClick={handlePaymentTerm}
-              >
-                Net 7 days
-              </button>
-              <button
-                className="btn-payment-term 14"
-                onClick={handlePaymentTerm}
-              >
-                Net 14 days
-              </button>
-              <button
-                className="btn-payment-term 30"
-                onClick={handlePaymentTerm}
-              >
-                Net 30 days
-              </button>
-            </div>
-          </div>
-        </label>
-        <label className="project-description">
-          Project Description
-          <input
-            type="text"
-            name="description"
-            maxLength={30}
-            placeholder="e.g. Graphic Design Service"
-            value={invoiceData.description}
-            onChange={handleInputChange}
-          />
-        </label>
-      </div>
-      <div className="item-list-box">
-        <h4 className="item-list-heading">Item List</h4>
-        <div className="item-list-head">
-          <p>Item Name</p>
-          <p>Qty.</p>
-          <p>Price</p>
-          <p>Total</p>
         </div>
-        {hideOnPhone && (
-          <div className="item-list-head mobile">
+        <div className="bill-to-box">
+          <p className="bill-to-text">Bill To</p>
+          <label>
+            Client's Name
+            <input
+              type="text"
+              name="clientName"
+              maxLength={30}
+              value={invoiceData.clientName}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Client's Email
+            <input
+              type="email"
+              name="clientEmail"
+              maxLength={30}
+              placeholder="e.g. email@example.com"
+              value={invoiceData.clientEmail}
+              onChange={handleInputChange}
+            />
+          </label>
+          <AddressInput
+            addressObj={invoiceData.clientAddress}
+            getAddress={getClientAddress}
+          />
+        </div>
+        <div className="invoice-date-box">
+          <label>
+            Invoice Date
+            <input
+              type="date"
+              name="createdAt"
+              value={invoiceData.createdAt}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Payment Terms
+            <div className="payment-term-menu">
+              <button
+                className="btn-payment-term-menu-head"
+                onClick={handlePaymentTermMenu}
+              >
+                <span>
+                  Net {paymentTerm} {paymentTerm > 1 ? "Days" : "Day"}
+                </span>
+                <img
+                  src={arrow}
+                  alt="down arrow"
+                  className={`down-arrow ${
+                    showPaymentTermMenu ? "rotate" : ""
+                  }`}
+                />
+              </button>
+              <div
+                className={`btn-payment-term-menu-body ${
+                  showPaymentTermMenu ? "" : "hidden"
+                }`}
+              >
+                <button
+                  className="btn-payment-term 1"
+                  onClick={handlePaymentTerm}
+                >
+                  Net 1 day
+                </button>
+                <button
+                  className="btn-payment-term 7"
+                  onClick={handlePaymentTerm}
+                >
+                  Net 7 days
+                </button>
+                <button
+                  className="btn-payment-term 14"
+                  onClick={handlePaymentTerm}
+                >
+                  Net 14 days
+                </button>
+                <button
+                  className="btn-payment-term 30"
+                  onClick={handlePaymentTerm}
+                >
+                  Net 30 days
+                </button>
+              </div>
+            </div>
+          </label>
+          <label className="project-description">
+            Project Description
+            <input
+              type="text"
+              name="description"
+              maxLength={30}
+              placeholder="e.g. Graphic Design Service"
+              value={invoiceData.description}
+              onChange={handleInputChange}
+            />
+          </label>
+        </div>
+        <div className="item-list-box">
+          <h4 className="item-list-heading">Item List</h4>
+          <div className="item-list-head">
             <p>Item Name</p>
             <p>Qty.</p>
             <p>Price</p>
             <p>Total</p>
           </div>
+          {hideOnPhone && (
+            <div className="item-list-head mobile">
+              <p>Item Name</p>
+              <p>Qty.</p>
+              <p>Price</p>
+              <p>Total</p>
+            </div>
+          )}
+          <div className="item-list-body">
+            {invoiceData.items.map((item, index) => {
+              return (
+                <div key={index} className="list-item-box">
+                  <label>
+                    <span>Item Name</span>
+                    <input
+                      type="text"
+                      name="name"
+                      maxLength={30}
+                      value={item.name}
+                      onChange={(e) => handleItemChange(e, index)}
+                    />
+                  </label>
+                  <label>
+                    <span>Qty.</span>
+                    <input
+                      type="number"
+                      placeholder="0"
+                      name="quantity"
+                      max={5}
+                      value={item.quantity}
+                      onChange={(e) => handleItemChange(e, index)}
+                    />
+                  </label>
+                  <label>
+                    <span>Price</span>
+                    <input
+                      type="number"
+                      placeholder="0.00"
+                      name="price"
+                      max={15000}
+                      value={item.price}
+                      onChange={(e) => handleItemChange(e, index)}
+                    />
+                  </label>
+                  <label>
+                    <span>Total</span>
+                    <p className="form-total-cost">
+                      {item.total.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </p>
+                  </label>
+                  <img
+                    src={trash}
+                    alt="trash icon"
+                    className="trash-icon"
+                    onClick={() => handleItemDeleteButton(index)}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <button
+            className="btn btn-add-new-item"
+            onClick={handleAddItemButton}
+          >
+            + Add New Item
+          </button>
+        </div>
+        {error && (
+          <div className="error-text-box">
+            <p>- All fields must be added</p>
+            <p>- An item must be added</p>
+          </div>
         )}
-        <div className="item-list-body">
-          {invoiceData.items.map((item, index) => {
-            return (
-              <div key={index} className="list-item-box">
-                <label>
-                  <span>Item Name</span>
-                  <input
-                    type="text"
-                    name="name"
-                    maxLength={30}
-                    value={item.name}
-                    onChange={(e) => handleItemChange(e, index)}
-                  />
-                </label>
-                <label>
-                  <span>Qty.</span>
-                  <input
-                    type="number"
-                    placeholder="0"
-                    name="quantity"
-                    max={5}
-                    value={item.quantity}
-                    onChange={(e) => handleItemChange(e, index)}
-                  />
-                </label>
-                <label>
-                  <span>Price</span>
-                  <input
-                    type="number"
-                    placeholder="0.00"
-                    name="price"
-                    max={15000}
-                    value={item.price}
-                    onChange={(e) => handleItemChange(e, index)}
-                  />
-                </label>
-                <label>
-                  <span>Total</span>
-                  <p className="form-total-cost">
-                    {item.total.toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </p>
-                </label>
-                <img
-                  src={trash}
-                  alt="trash icon"
-                  className="trash-icon"
-                  onClick={() => handleItemDeleteButton(index)}
-                />
-              </div>
-            );
-          })}
-        </div>
-        <button className="btn btn-add-new-item" onClick={handleAddItemButton}>
-          + Add New Item
-        </button>
       </div>
-      {error && (
-        <div className="error-text-box">
-          <p>- All fields must be added</p>
-          <p>- An item must be added</p>
-        </div>
-      )}
-      <div
-        className={`invoice-form-buttons ${
-          addEditInvoicePageVisible ? "slide-right" : ""
-        }`}
-      >
+      <div className="invoice-form-buttons">
         {props.name === "new" && (
           <div className="new-invoice-buttons">
             <button
